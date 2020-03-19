@@ -1,0 +1,91 @@
+@font-face {
+    font-family: 'Graphik';
+    src: url('assets/type/graphik/Graphik-Regular.otf');
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    background: #000000;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    font-family: "Graphik";
+}
+
+#buttons {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+}
+
+
+/* Dropdown button on hover & focus */
+
+.dropbtn:hover,
+.dropbtn:focus {
+    outline: none;
+}
+
+.dropbtn {
+    font-family: "Graphik";
+    font-size: 16px;
+    background-color: transparent;
+    color: white;
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 10px;
+    border: rgb(194, 174, 31) 2px solid;
+}
+
+
+/* The container <div> - needed to position the dropdown content */
+
+.dropdown {
+    position: fixed;
+    z-index: 3;
+    right: 20px;
+    top: 20px;
+}
+
+
+/* Dropdown Content (Hidden by Default) */
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: transparent;
+    min-width: 180px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    text-align: center;
+}
+
+
+/* Links inside the dropdown */
+
+.dropdown-content a {
+    color: white;
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-decoration: none;
+    display: block;
+    border-bottom: rgb(194, 174, 31) 2px solid;
+}
+
+
+/* Change color of dropdown links on hover */
+
+.dropdown-content a:hover {}
+
+
+/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+
+.show {
+    display: block;
+}

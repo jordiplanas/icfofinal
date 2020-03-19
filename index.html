@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>icfo</title>
+    <script>
+        window.$ = window.jQuery = require('jquery');
+    </script>
+    <link rel="stylesheet" href="style.css" />
+    <script src="sketch.js"></script>
+    <script src="script.js"></script>
+    <script>
+        var p5 = require('p5');
+    </script>
+</head>
+
+<body>
+
+    <div class="dropdown">
+        <button onclick="myFunction()" class="dropbtn">Dropdown</button>
+        <div id="myDropdown" class="dropdown-content">
+            <a onclick="item('en')">English</a>
+            <a onclick="item('cat')">Català</a>
+            <a onclick="item('es')">Castellà</a>
+            <a onclick="item('cr')">Credits</a>
+        </div>
+    </div>
+
+    <!-- You can also require other files to run in this process -->
+    <script src="./renderer.js"></script>
+</body>
+
+</html>
