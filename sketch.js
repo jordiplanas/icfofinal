@@ -7,11 +7,11 @@ let b1, b2, b3, b0;
 function preload() {
     taps[0] = loadImage('assets/imgs/tap.png')
     taps[1] = loadImage('assets/imgs/tap2.png')
-    stanby = createVideo('assets/videos/Standby.mov');
-    about = createVideo('assets/videos/About.mov');
-    intercity = createVideo('assets/videos/Intercity.mov');
-    intracity = createVideo('assets/videos/Intracity.mov');
-    international = createVideo('assets/videos/International.mov');
+    stanby = createVideo('assets/videos/Standby.mp4');
+    about = createVideo('assets/videos/About.mp4');
+    intercity = createVideo('assets/videos/Intercity.mp4');
+    intracity = createVideo('assets/videos/Intracity.mp4');
+    international = createVideo('assets/videos/International.mp4');
     fontRegular = loadFont('assets/type/graphik/Graphik-Regular.otf');
     fontItalic = loadFont('assets/type/graphik/Graphik-SemiboldItalic.otf');
     fontBold = loadFont('assets/type/graphik/Graphik-Bold.otf');
@@ -50,8 +50,20 @@ function draw() {
 }
 
 function displayVideo() {
+    if (video != stanby) {
+        console.log(video.time() / video.duration());
+        if (video.time() / video.duration() >= .99) {
+            switchVideo(4);
+            console.log("video Ended");
+            for (var i = 0; i < 4; i++) {
+                buttons[i].in = true;
+            }
+        } else {}
+    }
+
     image(video, 0, 0, width, height);
 }
+
 
 function switchVideo(id) {
     console.log(id);
@@ -76,7 +88,7 @@ function switchVideo(id) {
             video = international;
             video.loop();
             break
-        default:
+        case 4:
             video.stop();
             video = stanby;
             video.loop();
@@ -146,13 +158,11 @@ class Butt {
             this.drawText();
         }
         push();
-        fill(0, 50)
-        noStroke();
-        //ellipse(this.x, this.y, this.sz + 25);
         stroke(194, 174, 31, this.op);
         strokeWeight(3);
         tint(255, this.op)
         image(this.img, this.x - 50, this.y - 50, 100, 100)
+        noFill();
         ellipse(this.x, this.y, this.sz);
         pop();
         if (this.out) {
@@ -182,7 +192,7 @@ class Butt {
 
     drawLine(b) {
         push();
-        stroke(194, 174, 31, this.op);
+        stroke(194, 174, 31, this.op)
         strokeWeight(3);
         line(this.x + this.sz / 2, this.y, b.x - this.sz / 2, b.y);
         pop();
@@ -215,22 +225,25 @@ class Butt {
     }
 
     removeButtons() {
-        if (this.y < height + 100) {
-            this.y += this.canvasVel;
-            this.canvasVel += this.acc;
-            this.op -= 6;
-        } else {
-            this.in = true;
-            this.out = false;
+        this.vel = 0;
+        this.y += this.canvasVel;
+        this.canvasVel += this.acc;
+        if (this.op > 0) {
+            this.op -= 10;
+        }
+        if (this.y > height + 100) {
+            this.canvasVel = 0;
         }
     }
 
     addButtons() {
-        if (this.y > 350) {
-            this.y -= this.canvasVel;
-            this.canvasVel += this.acc;
-            this.op += 10;
-        } else {
+        this.out = false;
+        this.y -= this.canvasVel;
+        this.canvasVel += this.acc;
+        if (this.op < 255) {
+            this.op += 7;
+        }
+        if (this.y < 351) {
             this.prev = millis();
             this.in = false;
         }

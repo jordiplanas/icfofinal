@@ -39,16 +39,7 @@ function item(t) {
     console.log(t);
     if (t == 'cr') {
         var videoId = 0; //credits
-        buttonFade();
     } else {
         lang = t;
     }
-}
-
-function buttonFade() {
-    setTimeout(buttonIn, 3000)
-}
-
-function buttonIn() {
-    console.log("h")
 }
