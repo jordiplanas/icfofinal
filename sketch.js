@@ -29,7 +29,7 @@ function setup() {
     cnv = createCanvas(windowWidth, windowHeight);
     cnv.id('buttons');
     for (var i = 0; i < 4; i++) {
-        buttons.push(new Butt(width / 2 - 300 + i * 200, 355, i));
+        buttons.push(new Butt(width / 2 - 350 + i * 250, height - height / 4, i));
     }
 
     video = stanby;
@@ -51,7 +51,7 @@ function draw() {
 
 function displayVideo() {
     if (video != stanby) {
-        console.log(video.time() / video.duration());
+        //console.log(video.time() / video.duration());
         if (video.time() / video.duration() >= .99) {
             switchVideo(4);
             console.log("video Ended");
@@ -108,7 +108,7 @@ class Butt {
     constructor(x, y, id) {
         this.prev = millis();
         if (id != 0) {
-            this.del = 1000 / (id + 1);
+            this.del = 2000 / (id + 1);
         } else {
             this.del = 650;
         }
@@ -225,11 +225,10 @@ class Butt {
     }
 
     removeButtons() {
-        this.vel = 0;
         this.y += this.canvasVel;
         this.canvasVel += this.acc;
         if (this.op > 0) {
-            this.op -= 10;
+            this.op -= 7;
         }
         if (this.y > height + 100) {
             this.canvasVel = 0;
@@ -243,7 +242,7 @@ class Butt {
         if (this.op < 255) {
             this.op += 7;
         }
-        if (this.y < 351) {
+        if (this.y < height - height / 4) {
             this.prev = millis();
             this.in = false;
         }
@@ -263,7 +262,7 @@ function tapping() {
     } else {
         tapImage = taps[1];
     }
-    image(tapImage, 20, 20, 50, 50);
+    image(tapImage, width - 250, 20, 50, 50);
 }
 
 function windowResized() {
