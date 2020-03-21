@@ -126,6 +126,7 @@ class Butt {
         this.t = "";
         this.t2 = "";
         this.img;
+        this.sW = 4;
 
         switch (id) {
             case 0:
@@ -159,7 +160,7 @@ class Butt {
         }
         push();
         stroke(194, 174, 31, this.op);
-        strokeWeight(3);
+        strokeWeight(this.sW);
         tint(255, this.op)
         image(this.img, this.x - 50, this.y - 50, 100, 100)
         noFill();
@@ -218,6 +219,7 @@ class Butt {
     isPressed(x, y) {
         if (sq(x - this.x) + sq(y - this.y) < this.sz / 2 * this.sz / 2) {
             for (var i = 0; i < 4; i++) {
+                buttons[i].sW = 9;
                 buttons[i].out = true;
             }
             switchVideo(this.id);
@@ -236,6 +238,7 @@ class Butt {
     }
 
     addButtons() {
+        this.sW = 4;
         this.out = false;
         this.y -= this.canvasVel;
         this.canvasVel += this.acc;
