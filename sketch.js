@@ -1,17 +1,43 @@
 let taps = [];
 let tapImage;
-var video, stanby, about, intercity, intracity, international;
+var video, standby, about, intercity, intracity, international, credits;
+var standbyEn, standbyEs, standbyCat;
+var aboutEn, aboutEs, aboutCat;
+var intercityEn, intercityEs, intercityCat;
+var intracityEn, intracityEs, intracityCat;
+var internationalEN, internationalEs, internationalCat;
+var creditsEn, creditsEs, creditsCat;
+
 let fontRegular, fontItalic, fontBold;
 let b1, b2, b3, b0;
 
 function preload() {
     taps[0] = loadImage('assets/imgs/tap.png')
     taps[1] = loadImage('assets/imgs/tap2.png')
-    stanby = createVideo('assets/videos/Standby.mp4');
-    about = createVideo('assets/videos/About.mp4');
-    intercity = createVideo('assets/videos/Intercity.mp4');
-    intracity = createVideo('assets/videos/Intracity.mp4');
-    international = createVideo('assets/videos/International.mp4');
+    standbyEs = createVideo('assets/videos/StandbyEs.mp4');
+    standbyEn = createVideo('assets/videos/StandbyEn.mp4');
+    standbyCat = createVideo('assets/videos/StandbyCat.mp4');
+    standby = standbyEn;
+    aboutEn = createVideo('assets/videos/AboutEn.mp4');
+    aboutEs = createVideo('assets/videos/AboutEs.mp4');
+    aboutCat = createVideo('assets/videos/AboutCat.mp4');
+    about = aboutEn;
+    intercityEn = createVideo('assets/videos/IntercityEn.mp4');
+    intercityEs = createVideo('assets/videos/IntercityEs.mp4');
+    intercityCat = createVideo('assets/videos/IntercityCat.mp4');
+    intercity = intercityEn;
+    intracityEn = createVideo('assets/videos/IntracityEn.mp4');
+    intracityEs = createVideo('assets/videos/IntracityEs.mp4');
+    intracityCat = createVideo('assets/videos/IntracityCat.mp4');
+    intracity = intracityEn;
+    internationalEn = createVideo('assets/videos/InternationalEn.mp4');
+    internationalEs = createVideo('assets/videos/InternationalEs.mp4');
+    internationalCat = createVideo('assets/videos/InternationalCat.mp4');
+    international = internationalEn;
+    creditsEn = createVideo('assets/videos/CreditsEn.mp4');
+    creditsEs = createVideo('assets/videos/CreditsEs.mp4');
+    creditsCat = createVideo('assets/videos/CreditsCat.mp4');
+    credits = creditsEn;
     fontRegular = loadFont('assets/type/graphik/Graphik-Regular.otf');
     fontItalic = loadFont('assets/type/graphik/Graphik-SemiboldItalic.otf');
     fontBold = loadFont('assets/type/graphik/Graphik-Bold.otf');
@@ -32,7 +58,7 @@ function setup() {
         buttons.push(new Butt(width / 2 - 350 + i * 250, height - height / 4, i));
     }
 
-    video = stanby;
+    video = standby;
     video.loop();
 }
 
@@ -50,7 +76,7 @@ function draw() {
 }
 
 function displayVideo() {
-    if (video != stanby) {
+    if (video != standby) {
         //console.log(video.time() / video.duration());
         if (video.time() / video.duration() >= .99) {
             switchVideo(4);
@@ -70,28 +96,88 @@ function switchVideo(id) {
     switch (id) {
         case 0:
             video.stop();
+            if (lan == 'es') {
+                about = aboutEs;
+            }
+            if (lan == 'en') {
+                about = aboutEn;
+            }
+            if (lan == 'cat') {
+                about = aboutCat;
+            }
             video = about;
             video.loop();
             break;
         case 1:
             video.stop();
+            if (lan == 'es') {
+                intracity = intracityEs;
+            }
+            if (lan == 'en') {
+                intracity = intracityEn;
+            }
+            if (lan == 'cat') {
+                intracity = intracityCat;
+            }
             video = intracity;
             video.loop();
             break;
         case 2:
             video.stop();
+            if (lan == 'es') {
+                intercity = intercityEs;
+            }
+            if (lan == 'en') {
+                intercity = intercityEn;
+            }
+            if (lan == 'cat') {
+                intercity = intercityCat;
+            }
             video = intercity;
             video.loop();
-            break
+            break;
         case 3:
             video.stop();
+            if (lan == 'es') {
+                international = internationalEs;
+            }
+            if (lan == 'en') {
+                international = internationalEn;
+            }
+            if (lan == 'cat') {
+                international = internationalCat;
+            }
             video = international;
             video.loop();
-            break
+            break;
         case 4:
             video.stop();
-            video = stanby;
+            if (lan == 'es') {
+                standby = standbyEs;
+            }
+            if (lan == 'en') {
+                standby = standbyEn;
+            }
+            if (lan == 'cat') {
+                standby = standbyCat;
+            }
+            video = standby;
             video.loop();
+            break;
+        case 5:
+            video.stop();
+            if (lan == 'es') {
+                credits = creditsEs;
+            }
+            if (lan == 'en') {
+                credits = creditsEn;
+            }
+            if (lan == 'cat') {
+                credits = creditsCat;
+            }
+            video = credits;
+            video.loop();
+            break;
     }
 
 }

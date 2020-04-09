@@ -1,6 +1,4 @@
-var lang;
-var menu = true;
-var textId = 0;
+var lan = "en";
 
 function myFunction() {
     document.getElementById("myDropdown").classList.toggle("show");
@@ -37,10 +35,18 @@ window.onclick = function(event) {
 
 //dropdown links
 function item(t) {
-    console.log(t);
-    if (t == 'cr') {
-        var videoId = 0; //credits
+    if (t != 'cr') {
+        lan = t;
+        switchVideo(4);
+        for (var i = 0; i < 4; i++) {
+            buttons[i].in = true;
+        }
     } else {
-        lang = t;
+        for (var i = 0; i < 4; i++) {
+            buttons[i].sW = 9;
+            buttons[i].out = true;
+        }
+        switchVideo(5);
     }
+    console.log(lan);
 }
