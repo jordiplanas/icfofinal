@@ -77,14 +77,17 @@ function draw() {
 
 function displayVideo() {
     if (video != standby) {
-        //console.log(video.time() / video.duration());
         if (video.time() / video.duration() >= .99) {
-            switchVideo(4);
-            console.log("video Ended");
-            for (var i = 0; i < 4; i++) {
-                buttons[i].in = true;
+            if (video != credits) {
+                console.log("video credits");
+                switchVideo(5);
+            } else {
+                switchVideo(4);
+                for (var i = 0; i < 4; i++) {
+                    buttons[i].in = true;
+                }
             }
-        } else {}
+        }
     }
 
     image(video, 0, 0, width, height);
