@@ -19,7 +19,8 @@
             height: 250px;
             position: fixed;
             z-index: 3;
-            left: 20px;
+            right: -20px;
+            top: -20px;
         }
         
         .circle {
@@ -84,7 +85,7 @@
 
 <body>
 
-    <div class="dropdown">
+    <!--<div class="dropdown">
         <button id="button_id" onclick="myFunction()" class="dropbtn">Idiomas</button>
         <div id="myDropdown" class="dropdown-content">
             <a onclick="item('en')">English</a>
@@ -92,17 +93,18 @@
             <a onclick="item('es')">Castellano</a>
             <a onclick="item('mn')">Menu</a>
         </div>
-    </div>
+    </div> -->
 
     <!-- CIRCULAR -->
 
     <nav class="circular-menu">
 
         <div class="circle">
-            <a href="" id="1">MENU</a>
+
             <a href="" id="2">CAT</a>
             <a href="" id="3">ES</a>
             <a href="" id="4">EN</a>
+            <a href="" id="1">MENU</a>
 
         </div>
 
@@ -116,9 +118,9 @@
         var items = document.querySelectorAll('.circle a');
 
         for (var i = 0, l = items.length; i < l; i++) {
-            items[i].style.left = (50 - 35 * Math.cos(-0.5 * Math.PI - 2 * (1 / l) * i / 1.5 * Math.PI)).toFixed(4) + "%";
+            items[i].style.left = (50 - 55 * Math.cos(0.50 * Math.PI - 1.1 * (1 / l) * i / 1.5 * Math.PI)).toFixed(4) + "%";
 
-            items[i].style.top = (50 + 35 * Math.sin(-0.5 * Math.PI - 2 * (1 / l) * i / 1.5 * Math.PI)).toFixed(4) + "%";
+            items[i].style.top = (50 + 55 * Math.sin(0.50 * Math.PI - 1.1 * (1 / l) * i / 1.5 * Math.PI)).toFixed(4) + "%";
         }
 
         document.querySelector('.menu-button').onclick = function(e) {

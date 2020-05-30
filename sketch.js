@@ -68,7 +68,7 @@ function draw() {
 
     clear();
     displayVideo();
-    tapping();
+    //tapping();
     for (var i = 0; i < 4; i++) {
         buttons[i].display();
         if (i < 3) {
@@ -414,7 +414,7 @@ class Butt {
 
 }
 
-///tapping
+/*tapping
 
 var run = setInterval(function() {
     tap = !tap;
@@ -428,7 +428,7 @@ function tapping() {
         tapImage = taps[1];
     }
     image(tapImage, width - 280, 20, 50, 50);
-}
+}*/
 
 function windowResized() {
     resizeCanvas(windowWidth, windowHeight)
