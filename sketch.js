@@ -7,9 +7,10 @@ var intercityEn, intercityEs, intercityCat;
 var intracityEn, intracityEs, intracityCat;
 var internationalEN, internationalEs, internationalCat;
 var creditsEn, creditsEs, creditsCat;
-
+var generalVideo = 0;
 let fontRegular, fontItalic, fontBold;
 let b1, b2, b3, b0;
+var particles = [];
 
 function preload() {
     taps[0] = loadImage('assets/imgs/tap.png')
@@ -64,6 +65,7 @@ function setup() {
 
 
 function draw() {
+
     clear();
     displayVideo();
     tapping();
@@ -73,6 +75,52 @@ function draw() {
             buttons[i].drawLine(buttons[i + 1]);
         }
     }
+    for (let i = particles.length - 1; i >= 0; i--) {
+        particles[i].update();
+        particles[i].show();
+        if (particles[i].finished()) {
+            // remove this particle
+            particles.splice(i, 1);
+        }
+    }
+
+}
+
+function touchMoved() {
+    let p = new Particle(mouseX, mouseY);
+    particles.push(p);
+    return false;
+}
+
+class Particle {
+
+    constructor(x, y) {
+        this.x = x;
+        this.y = y;
+        this.r = 10;
+        this.w = 6;
+        this.alpha = 255;
+    }
+
+    finished() {
+        return this.alpha < 0;
+    }
+
+    update() {
+        this.r += 5;
+        this.alpha -= 5;
+    }
+
+    show() {
+        push();
+        stroke(255, this.alpha);
+        strokeWeight(this.w);
+        noFill();
+        // fill(255, this.alpha);
+        ellipse(this.x, this.y, this.r);
+        pop();
+    }
+
 }
 
 function displayVideo() {
@@ -80,8 +128,10 @@ function displayVideo() {
         if (video.time() / video.duration() >= .99) {
             if (video != credits) {
                 console.log("video credits");
+                generalVideo = 5;
                 switchVideo(5);
             } else {
+                generalVideo = 4;
                 switchVideo(4);
                 for (var i = 0; i < 4; i++) {
                     buttons[i].in = true;
@@ -96,6 +146,7 @@ function displayVideo() {
 
 function switchVideo(id) {
     console.log(id);
+
     switch (id) {
         case 0:
             video.stop();
@@ -216,29 +267,49 @@ class Butt {
         this.t2 = "";
         this.img;
         this.sW = 4;
-
+        this.idioma = "en";
+        this.subT = "";
+        this.mainT = "";
         switch (id) {
             case 0:
                 this.t = "The Quantum Communication Infrastructure";
+                this.tCat = "La Infraestructura per a la Comunicació Quántica";
+                this.tEs = "La Infraestructura para la Comunicación Cuántica";
                 this.img = b0;
                 this.t2 = "EU - QCI";
+                this.t2Cat = "EU - QCI";
+                this.t2Es = "EU - QCI";
                 break;
             case 1:
                 this.t = "Intracity";
+                this.tCat = "Intraurbà";
+                this.tEs = "Intraurbano";
                 this.img = b1;
                 this.t2 = "Short-distance network";
+                this.t2Cat = "Xarxa de curta distància";
+                this.t2Es = "Red de corta distancia";
                 break;
             case 2:
                 this.t = "Intercity";
+                this.tCat = "Interurbà";
+                this.tEs = "Interurbano";
                 this.img = b2;
                 this.t2 = "Mid-distance network";
+                this.t2Cat = "Xarxa de mitja distància";
+                this.t2Es = "Red de media distancia";
                 break;
             case 3:
                 this.t = "International";
+                this.tCat = "Internacional";
+                this.tEs = "Internacional";
                 this.img = b3;
                 this.t2 = "Long-distance network";
+                this.t2Cat = "Xarxa de llarga distància";
+                this.t2Es = "Red de larga distancia";
                 break;
         }
+        this.subT = this.t2;
+        this.mainT = this.t;
 
     }
 
@@ -294,12 +365,12 @@ class Butt {
         textFont(fontBold);
         textSize(16);
         fill(255);
-        text(this.t, this.x - 100, this.y + 60, 200, 100);
+        text(this.mainT, this.x - 100, this.y + 60, 200, 100);
         textSize(9);
         if (this.id != 0) {
-            text(this.t2, this.x - 100, this.y + 80, 200, 100);
+            text(this.subT, this.x - 100, this.y + 80, 200, 100);
         } else {
-            text(this.t2, this.x - 100, this.y + 120, 200, 100);
+            text(this.subT, this.x - 100, this.y + 120, 200, 100);
         }
 
         pop();
@@ -311,6 +382,7 @@ class Butt {
                 buttons[i].sW = 9;
                 buttons[i].out = true;
             }
+            generalVideo = this.id;
             switchVideo(this.id);
         }
     }
@@ -339,6 +411,7 @@ class Butt {
             this.in = false;
         }
     }
+
 }
 
 ///tapping
@@ -354,7 +427,7 @@ function tapping() {
     } else {
         tapImage = taps[1];
     }
-    image(tapImage, width - 250, 20, 50, 50);
+    image(tapImage, width - 280, 20, 50, 50);
 }
 
 function windowResized() {
