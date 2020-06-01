@@ -36,7 +36,6 @@ window.onclick = function(event) {
 //dropdown links
 function item(t) {
 
-    changeButtonName(t);
     if (t == 'mn') {
 
         for (var i = 0; i < 4; i++) {
@@ -49,6 +48,7 @@ function item(t) {
         switchVideo(4);
 
     } else {
+        changeButtonName(t);
         lan = t;
         if (video != standby) {
             switchVideo(generalVideo);
@@ -77,21 +77,21 @@ function item(t) {
 function changeButtonName(l) {
     switch (l) {
         case 'en':
-            document.getElementById("button_id").innerHTML = 'Languages';
+            // document.getElementById("button_id").innerHTML = 'Languages';
             for (var i = 0; i < 4; i++) {
                 buttons[i].subT = buttons[i].t2;
                 buttons[i].mainT = buttons[i].t;
             }
             break;
         case 'es':
-            document.getElementById("button_id").innerHTML = 'Idiomas';
+            // document.getElementById("button_id").innerHTML = 'Idiomas';
             for (var i = 0; i < 4; i++) {
                 buttons[i].subT = buttons[i].t2Es;
                 buttons[i].mainT = buttons[i].tEs;
             }
             break;
         case 'cat':
-            document.getElementById("button_id").innerHTML = 'Idiomes';
+            // document.getElementById("button_id").innerHTML = 'Idiomes';
             for (var i = 0; i < 4; i++) {
                 buttons[i].subT = buttons[i].t2Cat;
                 buttons[i].mainT = buttons[i].tCat;
