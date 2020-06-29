@@ -1,43 +1,8 @@
 var lan = "en";
 
-function myFunction() {
-    document.getElementById("myDropdown").classList.toggle("show");
-    setTimeout(closeDropdown, 7000);
-}
-
-//close dropdown in 5 sec of innactiovity
-function closeDropdown() {
-    var dropdowns = document.getElementsByClassName("dropdown-content");
-    var i;
-    for (i = 0; i < dropdowns.length; i++) {
-        var openDropdown = dropdowns[i];
-        if (openDropdown.classList.contains('show')) {
-            openDropdown.classList.remove('show');
-
-        }
-    }
-    clear();
-}
-
-// Close the dropdown menu if the user clicks outside of it
-window.onclick = function(event) {
-    if (!event.target.matches('.dropbtn')) {
-        var dropdowns = document.getElementsByClassName("dropdown-content");
-        var i;
-        for (i = 0; i < dropdowns.length; i++) {
-            var openDropdown = dropdowns[i];
-            if (openDropdown.classList.contains('show')) {
-                openDropdown.classList.remove('show');
-            }
-        }
-    }
-}
-
-//dropdown links
 function item(t) {
 
     if (t == 'mn') {
-
         for (var i = 0; i < 4; i++) {
             //buttons[i].sW = 9;
             if (buttons[i].out == true) {
@@ -56,20 +21,6 @@ function item(t) {
             switchVideo(4);
         }
     }
-    /*if (t != 'cr') {
-        lan = t;
-        switchVideo(4);
-        for (var i = 0; i < 4; i++) {
-            buttons[i].in = true;
-        }
-    }
-    else {
-        for (var i = 0; i < 4; i++) {
-            buttons[i].sW = 9;
-            buttons[i].out = true;
-        }
-        switchVideo(5);
-    }*/
     console.log(lan);
 }
 
@@ -97,6 +48,30 @@ function changeButtonName(l) {
                 buttons[i].mainT = buttons[i].tCat;
             }
             break;
-
     }
 }
+
+$(window).bind("load", function() {
+
+    var items = document.querySelectorAll('.circle a');
+    for (var i = 0, l = items.length; i < l; i++) {
+        items[i].style.left = (50 - 55 * Math.cos(0.50 * Math.PI - 1.1 * (1 / l) * i / 1.5 * Math.PI)).toFixed(4) + "%";
+        items[i].style.top = (50 + 55 * Math.sin(0.50 * Math.PI - 1.1 * (1 / l) * i / 1.5 * Math.PI)).toFixed(4) + "%";
+    }
+
+    document.querySelector('.menu-button').onclick = function(e) {
+        e.preventDefault();
+        document.querySelector('.circle').classList.toggle('open');
+        setTimeout(function() {
+            if (document.querySelector('.circle').classList.contains('open')) {
+                document.querySelector('.circle').classList.toggle('open');
+            }
+        }, 3000)
+    }
+
+    document.querySelector('.circle').onclick = function(e) {
+        document.querySelector('.circle').classList.toggle('open');
+        item(e.target.id);
+    }
+
+});

@@ -20,86 +20,76 @@ body {
     min-height: 100%;
 }
 
-
-/* Dropdown button on hover & focus */
-
-.dropbtn:hover,
-.dropbtn:focus {
-    outline: none;
-}
-
-.dropbtn {
-    font-family: "Graphik";
-    font-size: 16px;
-    background-color: transparent;
-    color: white;
-    padding-left: 50px;
-    padding-right: 50px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    border-radius: 10px;
-    border: rgb(194, 174, 31) 2px solid;
-}
-
-.dropbtnEn {
-    font-family: "Graphik";
-    font-size: 16px;
-    background-color: transparent;
-    color: white;
-    padding-left: 30px;
-    padding-right: 30px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    border-radius: 10px;
-    border: rgb(194, 174, 31) 2px solid;
-}
-
-
-/* The container <div> - needed to position the dropdown content */
-
-.dropdown {
+.circular-menu {
+    width: 250px;
+    height: 250px;
     position: fixed;
     z-index: 3;
-    right: 20px;
-    top: 20px;
+    right: -20px;
+    top: -30px;
 }
 
-
-/* Dropdown Content (Hidden by Default) */
-
-.dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: transparent;
-    min-width: 180px;
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-    z-index: 1;
-    text-align: center;
+.circle {
+    width: 250px;
+    height: 250px;
+    opacity: 0;
+    -webkit-transform: scale(0);
+    -moz-transform: scale(0);
+    transform: scale(0);
+    -webkit-transition: all 0.4s ease-out;
+    -moz-transition: all 0.4s ease-out;
+    transition: all 0.4s ease-out;
 }
 
+.open.circle {
+    opacity: 1;
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    transform: scale(1);
+}
 
-/* Links inside the dropdown */
-
-.dropdown-content a {
-    color: white;
-    padding-left: 50px;
-    padding-right: 50px;
-    padding-top: 10px;
-    padding-bottom: 10px;
+.circle a {
     text-decoration: none;
-    display: block;
-    border-bottom: rgb(194, 174, 31) 2px solid;
+    color: white;
+    height: 60px;
+    width: 60px;
+    line-height: 60px;
+    margin-left: -30px;
+    margin-top: -30px;
+    position: absolute;
+    text-align: center;
+    border: 2px solid yellow;
+    border-radius: 50%;
+    display: inline-block;
 }
 
+.circle a:hover {
+    color: #eef;
+}
 
-/* Change color of dropdown links on hover
-
-.dropdown-content a:hover {}
- */
-
-
-/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
-
-.show {
+.menu-button {
+    position: absolute;
+    top: calc(50% - 30px);
+    left: calc(50% - 30px);
+    text-decoration: none;
+    text-align: center;
+    color: #444;
+    border-radius: 50%;
     display: block;
+    height: 40px;
+    width: 40px;
+    line-height: 40px;
+    padding: 10px;
+    background: #dde;
+}
+
+.menu-button div {
+    width: 35px;
+    height: 5px;
+    background-color: #444;
+    border-radius: 10px;
+}
+
+.menu-button:hover {
+    background-color: #eef;
 }

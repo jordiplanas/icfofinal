@@ -68,7 +68,6 @@ function draw() {
 
     clear();
     displayVideo();
-    //tapping();
     for (var i = 0; i < 4; i++) {
         buttons[i].display();
         if (i < 3) {
@@ -79,11 +78,9 @@ function draw() {
         particles[i].update();
         particles[i].show();
         if (particles[i].finished()) {
-            // remove this particle
             particles.splice(i, 1);
         }
     }
-
 }
 
 function touchMoved() {
@@ -116,7 +113,6 @@ class Particle {
         stroke(255, this.alpha);
         strokeWeight(this.w);
         noFill();
-        // fill(255, this.alpha);
         ellipse(this.x, this.y, this.r);
         pop();
     }
@@ -233,12 +229,23 @@ function switchVideo(id) {
             video.loop();
             break;
     }
-
 }
 
 function mousePressed() {
     for (var i = 0; i < 4; i++) {
         buttons[i].isPressed(mouseX, mouseY);
+    }
+    //show and hide menu while playing
+    for (var i = 0; i < 4; i++) {
+        if (mouseY < height - height / 4 && mouseY > 100 && buttons[i].out) {
+            buttons[i].in = true;
+            setTimeout(function() {
+                for (var i = 0; i < 4; i++) {
+                    buttons[i].in = false;
+                    buttons[i].out = true;
+                }
+            }, 10000);
+        }
     }
 }
 
@@ -414,21 +421,6 @@ class Butt {
 
 }
 
-/*tapping
-
-var run = setInterval(function() {
-    tap = !tap;
-
-}, 1000);
-
-function tapping() {
-    if (tap) {
-        tapImage = taps[0];
-    } else {
-        tapImage = taps[1];
-    }
-    image(tapImage, width - 280, 20, 50, 50);
-}*/
 
 function windowResized() {
     resizeCanvas(windowWidth, windowHeight)
