@@ -21,7 +21,7 @@
         "electron-packager": "^14.2.1"
     },
     "dependencies": {
-        "jquery": "^3.4.1",
+        "jquery": "^3.5.0",
         "p5": "^1.0.0"
     }
 }
