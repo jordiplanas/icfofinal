@@ -1,0 +1,27 @@
+{
+    "name": "icfo",
+    "version": "1.0.0",
+    "description": "touch app",
+    "main": "main.js",
+    "scripts": {
+        "start": "electron ."
+    },
+    "repository": "https://github.com/jordiplanas/icfo3",
+    "keywords": [
+        "Electron",
+        "quick",
+        "start",
+        "tutorial",
+        "demo"
+    ],
+    "author": "GitHub",
+    "license": "CC0-1.0",
+    "devDependencies": {
+        "electron": "^8.1.1",
+        "electron-packager": "^14.2.1"
+    },
+    "dependencies": {
+        "jquery": "^3.4.1",
+        "p5": "^1.0.0"
+    }
+}
